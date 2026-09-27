@@ -139,6 +139,20 @@ describe('Problems and Solutions', () => {
     expect(s.log.at(-1)).toMatchObject({ kind: 'solution', member: 'Tim', status: 'DONE' })
   })
 
+  it('a Solution used right after the Problem is logged after that turn, not before it', () => {
+    let s = turn(started(), 5, [6, 6], 's-pair-programming') // Ani: #5 16 → 4, Solution kept
+    s = turn(s, 5, [2, 2], 'p-bad-quality', false) // Budi: #5 4 → 0, Problem drawn
+    const problemUid = findStory(s, 5).problems[0].uid
+    s = gameReducer(s, { type: 'useSolution', solutionUid: s.solutions[0].uid, problemUid })
+    expect(s.log).toHaveLength(1) // Budi's row waits for the end of his turn
+    s = gameReducer(s, { type: 'endTurn' })
+    const [, budi, fix] = s.log
+    expect(budi).toMatchObject({ kind: 'turn', member: 'Budi', status: 'IN PROGRESS (BLOCKED)', problemsAfter: 'Bad Quality', pocketAfter: 1 })
+    expect(fix).toMatchObject({ kind: 'solution', member: 'Tim', status: 'DONE', pocketAfter: 0 })
+    expect(findStory(s, 5).column).toBe('done')
+    expect(s.sprints[0].doneIds).toContain(5)
+  })
+
   it('Solutions stack in the team pocket', () => {
     let s = turn(started(), 1, [1, 1], 's-specialist')
     s = turn(s, 1, [1, 1], 's-insight')

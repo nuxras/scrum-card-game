@@ -435,11 +435,16 @@ function applySolution(state: GameState, solutionUid: string, problemUid: string
   if (!solution || !target) return state
 
   const s = clone(state)
+  const t = s.turn
+  // Used after this turn's card: the turn's row is written first, as it stood, and
+  // the Solution row follows it, so the log reads in the order things happened.
+  const afterCard = t != null && t.stage === 'done'
+  if (afterCard && !t.snapshot) t.snapshot = buildTurnEntry(s, t)
+
   const story = findStory(s, target.story.id)
   s.solutions = s.solutions.filter((x) => x.uid !== solutionUid)
   story.problems = story.problems.filter((p) => p.uid !== problemUid)
 
-  const t = s.turn
   // A story mid-turn (dice already rolled) is judged at the end of that turn: the
   // Chance card still to come can change its hours.
   const deferred = t != null && t.storyId === story.id && (t.stage === 'draw' || t.stage === 'decide')
@@ -451,7 +456,7 @@ function applySolution(state: GameState, solutionUid: string, problemUid: string
 
   const solutionCard = getCard(solution.cardId)
   const problemCard = getCard(target.problem.cardId)
-  pushLog(s, {
+  const entry: PendingLog = {
     kind: 'solution',
     order: null,
     member: 'Tim',
@@ -468,7 +473,9 @@ function applySolution(state: GameState, solutionUid: string, problemUid: string
     before: story.remaining,
     problemsAfter: problemNames(story),
     pocketAfter: s.solutions.length,
-  })
+  }
+  if (afterCard) t.afterLog = [...(t.afterLog ?? []), entry]
+  else pushLog(s, entry)
 
   if (isFinishedAllDone(s) && (!t || t.stage === 'pick' || t.stage === 'roll')) {
     finish(s, 'all-done')
@@ -482,8 +489,24 @@ function endTurn(state: GameState): GameState {
   const s = clone(state)
   const t = s.turn!
   for (const story of s.stories) settleDone(s, story)
+  pushLog(s, t.snapshot ?? buildTurnEntry(s, t))
+  for (const entry of t.afterLog ?? []) pushLog(s, entry)
+
+  s.turn = null
+  s.skipNotices = []
+  s.dayNote = null
+  s.turnIndex += 1
+  beginTurn(s)
+  return s
+}
+
+type PendingLog = Omit<LogEntry, 'id' | 'sprint' | 'day'>
+
+/** The log row for a turn whose card is resolved. A story ready for DONE is reported as DONE. */
+function buildTurnEntry(s: GameState, t: TurnDraft): PendingLog {
   const story = findStory(s, t.storyId!)
   const roll = t.roll!
+  const done = story.column === 'done' || isDoneReady(story)
 
   const diceParts = [
     roll.penalty
@@ -493,11 +516,11 @@ function endTurn(state: GameState): GameState {
   if (t.extraDice) diceParts.push(`Good Recruit ${t.extraDice[0]} + ${t.extraDice[1]} = ${t.extraDice[0] + t.extraDice[1]}`)
 
   const notes = [...t.notes]
-  if (story.column === 'done') notes.push(`#${story.id} DONE`)
+  if (done) notes.push(`#${story.id} DONE`)
 
   const before = t.before ?? story.remaining
   const effective = roll.result + (t.bonus ?? 0)
-  pushLog(s, {
+  return {
     kind: 'turn',
     order: t.order,
     member: memberName(s, t.memberId),
@@ -507,7 +530,7 @@ function endTurn(state: GameState): GameState {
     cards: t.cards.map((id) => `${getCard(id).name} (${KIND_LABEL[getCard(id).kind]})`).join(' → '),
     effect: notes.join('; '),
     remaining: story.remaining,
-    status: statusLabel(story),
+    status: done ? 'DONE' : statusLabel(story),
     dice1: roll.dice[0],
     dice2: roll.dice[1],
     diceTotal: roll.base,
@@ -518,14 +541,7 @@ function endTurn(state: GameState): GameState {
     trail: story.trailTurn === t.seq ? [...story.trail] : [before, story.remaining],
     problemsAfter: problemNames(story),
     pocketAfter: s.solutions.length,
-  })
-
-  s.turn = null
-  s.skipNotices = []
-  s.dayNote = null
-  s.turnIndex += 1
-  beginTurn(s)
-  return s
+  }
 }
 
 function startNextSprint(state: GameState): GameState {

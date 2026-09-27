@@ -71,6 +71,10 @@ export interface TurnDraft {
   bonus: number
   /** Card changes to the story itself, e.g. "+6 (Extra Cost)". */
   adjust: string[]
+  /** This turn's log row, frozen when a Solution is used after the card (written first at end of turn). */
+  snapshot?: Omit<LogEntry, 'id' | 'sprint' | 'day'> | null
+  /** Solution rows used after the card, written right after the turn's row. */
+  afterLog?: Omit<LogEntry, 'id' | 'sprint' | 'day'>[]
 }
 
 export type LogKind = 'turn' | 'skip' | 'solution'

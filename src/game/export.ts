@@ -191,8 +191,8 @@ function sheetRows(headers: readonly string[], rows: Cell[][]) {
   ]
 }
 
-export async function downloadXlsx(state: GameState) {
-  const { default: writeExcelFile } = await import('write-excel-file/browser')
+/** Every sheet of the report workbook. Shared by the browser download and any Node script. */
+export function workbookSheets(state: GameState) {
   const summary: Cell[][] = [
     ['Tim', state.teamName || '—'],
     ['Anggota (urutan giliran)', state.members.map((m) => m.name).join(', ')],
@@ -206,7 +206,7 @@ export async function downloadXlsx(state: GameState) {
   const cardRows: Cell[][] = state.log
     .flatMap((e) => e.cardIds.map((id) => [e.id, getCard(id).name, KIND_LABEL[getCard(id).kind]]))
 
-  const blob = await writeExcelFile([
+  return [
     {
       sheet: 'Log Giliran',
       data: logSheet(state),
@@ -248,6 +248,11 @@ export async function downloadXlsx(state: GameState) {
       data: summary.map((r) => [{ value: r[0] ?? '', fontWeight: 'bold' as const }, { value: r[1] ?? '' }]),
       columns: [{ width: 26 }, { width: 70 }],
     },
-  ]).toBlob()
+  ]
+}
+
+export async function downloadXlsx(state: GameState) {
+  const { default: writeExcelFile } = await import('write-excel-file/browser')
+  const blob = await writeExcelFile(workbookSheets(state)).toBlob()
   download(blob, exportFileName(state, 'xlsx'))
 }
