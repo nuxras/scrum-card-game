@@ -1,0 +1,623 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-27T06:37:26.617Z",
+  "title": "Design System: Scrum Card Game Simulator",
+  "extensions": {
+    "colorMeta": {
+      "stabilo": {
+        "role": "primary",
+        "displayName": "Stabilo Yellow",
+        "canonical": "#ffe53d",
+        "tonalRamp": [
+          "oklch(15.0% 0.065 100.0)",
+          "oklch(26.4% 0.111 100.0)",
+          "oklch(37.9% 0.156 100.0)",
+          "oklch(49.3% 0.175 100.0)",
+          "oklch(60.7% 0.162 100.0)",
+          "oklch(72.1% 0.116 100.0)",
+          "oklch(83.6% 0.071 100.0)",
+          "oklch(95.0% 0.025 100.0)"
+        ]
+      },
+      "stabilo-soft": {
+        "role": "primary",
+        "displayName": "Soft Stabilo",
+        "canonical": "#fff3a1",
+        "tonalRamp": [
+          "oklch(15.0% 0.065 100.9)",
+          "oklch(26.4% 0.103 100.9)",
+          "oklch(37.9% 0.103 100.9)",
+          "oklch(49.3% 0.103 100.9)",
+          "oklch(60.7% 0.103 100.9)",
+          "oklch(72.1% 0.103 100.9)",
+          "oklch(83.6% 0.071 100.9)",
+          "oklch(95.0% 0.025 100.9)"
+        ]
+      },
+      "cover": {
+        "role": "secondary",
+        "displayName": "Notebook Cover Green",
+        "canonical": "#0b7a4e",
+        "tonalRamp": [
+          "oklch(15.0% 0.065 159.1)",
+          "oklch(26.4% 0.111 159.1)",
+          "oklch(37.9% 0.115 159.1)",
+          "oklch(49.3% 0.115 159.1)",
+          "oklch(60.7% 0.115 159.1)",
+          "oklch(72.1% 0.115 159.1)",
+          "oklch(83.6% 0.071 159.1)",
+          "oklch(95.0% 0.025 159.1)"
+        ]
+      },
+      "cover-deep": {
+        "role": "secondary",
+        "displayName": "Deep Cover",
+        "canonical": "#075c3a",
+        "tonalRamp": [
+          "oklch(15.0% 0.065 159.2)",
+          "oklch(26.4% 0.093 159.2)",
+          "oklch(37.9% 0.093 159.2)",
+          "oklch(49.3% 0.093 159.2)",
+          "oklch(60.7% 0.093 159.2)",
+          "oklch(72.1% 0.093 159.2)",
+          "oklch(83.6% 0.071 159.2)",
+          "oklch(95.0% 0.025 159.2)"
+        ]
+      },
+      "stamp": {
+        "role": "secondary",
+        "displayName": "Stamp Green",
+        "canonical": "#0b7a4e",
+        "tonalRamp": [
+          "oklch(15.0% 0.065 159.1)",
+          "oklch(26.4% 0.111 159.1)",
+          "oklch(37.9% 0.115 159.1)",
+          "oklch(49.3% 0.115 159.1)",
+          "oklch(60.7% 0.115 159.1)",
+          "oklch(72.1% 0.115 159.1)",
+          "oklch(83.6% 0.071 159.1)",
+          "oklch(95.0% 0.025 159.1)"
+        ]
+      },
+      "event": {
+        "role": "tertiary",
+        "displayName": "Event Graphite",
+        "canonical": "#5e6b82",
+        "tonalRamp": [
+          "oklch(15.0% 0.040 261.8)",
+          "oklch(26.4% 0.040 261.8)",
+          "oklch(37.9% 0.040 261.8)",
+          "oklch(49.3% 0.040 261.8)",
+          "oklch(60.7% 0.040 261.8)",
+          "oklch(72.1% 0.040 261.8)",
+          "oklch(83.6% 0.040 261.8)",
+          "oklch(95.0% 0.025 261.8)"
+        ]
+      },
+      "event-ink": {
+        "role": "tertiary",
+        "displayName": "Event Ink",
+        "canonical": "#3f4a60",
+        "tonalRamp": [
+          "oklch(15.0% 0.040 264.0)",
+          "oklch(26.4% 0.040 264.0)",
+          "oklch(37.9% 0.040 264.0)",
+          "oklch(49.3% 0.040 264.0)",
+          "oklch(60.7% 0.040 264.0)",
+          "oklch(72.1% 0.040 264.0)",
+          "oklch(83.6% 0.040 264.0)",
+          "oklch(95.0% 0.025 264.0)"
+        ]
+      },
+      "event-tint": {
+        "role": "tertiary",
+        "displayName": "Event Tint",
+        "canonical": "#eef1f6",
+        "tonalRamp": [
+          "oklch(15.0% 0.007 260.7)",
+          "oklch(26.4% 0.007 260.7)",
+          "oklch(37.9% 0.007 260.7)",
+          "oklch(49.3% 0.007 260.7)",
+          "oklch(60.7% 0.007 260.7)",
+          "oklch(72.1% 0.007 260.7)",
+          "oklch(83.6% 0.007 260.7)",
+          "oklch(95.0% 0.007 260.7)"
+        ]
+      },
+      "problem": {
+        "role": "tertiary",
+        "displayName": "Problem Red-Orange",
+        "canonical": "#e4532a",
+        "tonalRamp": [
+          "oklch(15.0% 0.065 36.1)",
+          "oklch(26.4% 0.111 36.1)",
+          "oklch(37.9% 0.156 36.1)",
+          "oklch(49.3% 0.188 36.1)",
+          "oklch(60.7% 0.162 36.1)",
+          "oklch(72.1% 0.116 36.1)",
+          "oklch(83.6% 0.071 36.1)",
+          "oklch(95.0% 0.025 36.1)"
+        ]
+      },
+      "problem-ink": {
+        "role": "tertiary",
+        "displayName": "Problem Ink",
+        "canonical": "#b0360f",
+        "tonalRamp": [
+          "oklch(15.0% 0.065 36.2)",
+          "oklch(26.4% 0.111 36.2)",
+          "oklch(37.9% 0.156 36.2)",
+          "oklch(49.3% 0.165 36.2)",
+          "oklch(60.7% 0.162 36.2)",
+          "oklch(72.1% 0.116 36.2)",
+          "oklch(83.6% 0.071 36.2)",
+          "oklch(95.0% 0.025 36.2)"
+        ]
+      },
+      "problem-tint": {
+        "role": "tertiary",
+        "displayName": "Problem Tint",
+        "canonical": "#ffe9e1",
+        "tonalRamp": [
+          "oklch(15.0% 0.026 41.1)",
+          "oklch(26.4% 0.026 41.1)",
+          "oklch(37.9% 0.026 41.1)",
+          "oklch(49.3% 0.026 41.1)",
+          "oklch(60.7% 0.026 41.1)",
+          "oklch(72.1% 0.026 41.1)",
+          "oklch(83.6% 0.026 41.1)",
+          "oklch(95.0% 0.025 41.1)"
+        ]
+      },
+      "solution": {
+        "role": "tertiary",
+        "displayName": "Solution Sky",
+        "canonical": "#7fd0f5",
+        "tonalRamp": [
+          "oklch(15.0% 0.065 229.0)",
+          "oklch(26.4% 0.095 229.0)",
+          "oklch(37.9% 0.095 229.0)",
+          "oklch(49.3% 0.095 229.0)",
+          "oklch(60.7% 0.095 229.0)",
+          "oklch(72.1% 0.095 229.0)",
+          "oklch(83.6% 0.071 229.0)",
+          "oklch(95.0% 0.025 229.0)"
+        ]
+      },
+      "solution-ink": {
+        "role": "tertiary",
+        "displayName": "Solution Ink",
+        "canonical": "#0b5f86",
+        "tonalRamp": [
+          "oklch(15.0% 0.065 236.4)",
+          "oklch(26.4% 0.096 236.4)",
+          "oklch(37.9% 0.096 236.4)",
+          "oklch(49.3% 0.096 236.4)",
+          "oklch(60.7% 0.096 236.4)",
+          "oklch(72.1% 0.096 236.4)",
+          "oklch(83.6% 0.071 236.4)",
+          "oklch(95.0% 0.025 236.4)"
+        ]
+      },
+      "solution-tint": {
+        "role": "tertiary",
+        "displayName": "Solution Tint",
+        "canonical": "#e4f5fd",
+        "tonalRamp": [
+          "oklch(15.0% 0.021 227.5)",
+          "oklch(26.4% 0.021 227.5)",
+          "oklch(37.9% 0.021 227.5)",
+          "oklch(49.3% 0.021 227.5)",
+          "oklch(60.7% 0.021 227.5)",
+          "oklch(72.1% 0.021 227.5)",
+          "oklch(83.6% 0.021 227.5)",
+          "oklch(95.0% 0.021 227.5)"
+        ]
+      },
+      "paper": {
+        "role": "neutral",
+        "displayName": "Paper",
+        "canonical": "#ffffff",
+        "tonalRamp": [
+          "oklch(15.0% 0.000 89.9)",
+          "oklch(26.4% 0.000 89.9)",
+          "oklch(37.9% 0.000 89.9)",
+          "oklch(49.3% 0.000 89.9)",
+          "oklch(60.7% 0.000 89.9)",
+          "oklch(72.1% 0.000 89.9)",
+          "oklch(83.6% 0.000 89.9)",
+          "oklch(95.0% 0.000 89.9)"
+        ]
+      },
+      "paper-shade": {
+        "role": "neutral",
+        "displayName": "Shaded Paper",
+        "canonical": "#f3f7fc",
+        "tonalRamp": [
+          "oklch(15.0% 0.008 253.9)",
+          "oklch(26.4% 0.008 253.9)",
+          "oklch(37.9% 0.008 253.9)",
+          "oklch(49.3% 0.008 253.9)",
+          "oklch(60.7% 0.008 253.9)",
+          "oklch(72.1% 0.008 253.9)",
+          "oklch(83.6% 0.008 253.9)",
+          "oklch(95.0% 0.008 253.9)"
+        ]
+      },
+      "rule": {
+        "role": "neutral",
+        "displayName": "Pale Blue Rule",
+        "canonical": "#d3e3f4",
+        "tonalRamp": [
+          "oklch(15.0% 0.029 249.8)",
+          "oklch(26.4% 0.029 249.8)",
+          "oklch(37.9% 0.029 249.8)",
+          "oklch(49.3% 0.029 249.8)",
+          "oklch(60.7% 0.029 249.8)",
+          "oklch(72.1% 0.029 249.8)",
+          "oklch(83.6% 0.029 249.8)",
+          "oklch(95.0% 0.025 249.8)"
+        ]
+      },
+      "rule-strong": {
+        "role": "neutral",
+        "displayName": "Strong Rule",
+        "canonical": "#a9c6e6",
+        "tonalRamp": [
+          "oklch(15.0% 0.055 251.0)",
+          "oklch(26.4% 0.055 251.0)",
+          "oklch(37.9% 0.055 251.0)",
+          "oklch(49.3% 0.055 251.0)",
+          "oklch(60.7% 0.055 251.0)",
+          "oklch(72.1% 0.055 251.0)",
+          "oklch(83.6% 0.055 251.0)",
+          "oklch(95.0% 0.025 251.0)"
+        ]
+      },
+      "margin-line": {
+        "role": "neutral",
+        "displayName": "Margin Red",
+        "canonical": "#f2a0a0",
+        "tonalRamp": [
+          "oklch(15.0% 0.065 19.5)",
+          "oklch(26.4% 0.098 19.5)",
+          "oklch(37.9% 0.098 19.5)",
+          "oklch(49.3% 0.098 19.5)",
+          "oklch(60.7% 0.098 19.5)",
+          "oklch(72.1% 0.098 19.5)",
+          "oklch(83.6% 0.071 19.5)",
+          "oklch(95.0% 0.025 19.5)"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Ballpoint Navy",
+        "canonical": "#1b2559",
+        "tonalRamp": [
+          "oklch(15.0% 0.065 271.1)",
+          "oklch(26.4% 0.094 271.1)",
+          "oklch(37.9% 0.094 271.1)",
+          "oklch(49.3% 0.094 271.1)",
+          "oklch(60.7% 0.094 271.1)",
+          "oklch(72.1% 0.094 271.1)",
+          "oklch(83.6% 0.071 271.1)",
+          "oklch(95.0% 0.025 271.1)"
+        ]
+      },
+      "ink-2": {
+        "role": "neutral",
+        "displayName": "Faded Ink",
+        "canonical": "#414b78",
+        "tonalRamp": [
+          "oklch(15.0% 0.065 273.3)",
+          "oklch(26.4% 0.076 273.3)",
+          "oklch(37.9% 0.076 273.3)",
+          "oklch(49.3% 0.076 273.3)",
+          "oklch(60.7% 0.076 273.3)",
+          "oklch(72.1% 0.076 273.3)",
+          "oklch(83.6% 0.071 273.3)",
+          "oklch(95.0% 0.025 273.3)"
+        ]
+      },
+      "ink-3": {
+        "role": "neutral",
+        "displayName": "Pencil Grey-Blue",
+        "canonical": "#5d668c",
+        "tonalRamp": [
+          "oklch(15.0% 0.061 273.8)",
+          "oklch(26.4% 0.061 273.8)",
+          "oklch(37.9% 0.061 273.8)",
+          "oklch(49.3% 0.061 273.8)",
+          "oklch(60.7% 0.061 273.8)",
+          "oklch(72.1% 0.061 273.8)",
+          "oklch(83.6% 0.061 273.8)",
+          "oklch(95.0% 0.025 273.8)"
+        ]
+      },
+      "red-pen": {
+        "role": "neutral",
+        "displayName": "Red Pen",
+        "canonical": "#d63b2f",
+        "tonalRamp": [
+          "oklch(15.0% 0.065 28.9)",
+          "oklch(26.4% 0.111 28.9)",
+          "oklch(37.9% 0.156 28.9)",
+          "oklch(49.3% 0.194 28.9)",
+          "oklch(60.7% 0.162 28.9)",
+          "oklch(72.1% 0.116 28.9)",
+          "oklch(83.6% 0.071 28.9)",
+          "oklch(95.0% 0.025 28.9)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "cover-print": {
+        "displayName": "Cover Print",
+        "purpose": "Printed uppercase title on the cover label only."
+      },
+      "display": {
+        "displayName": "Display",
+        "purpose": "Handwritten page titles (Giliran, Sprint Planning, Game selesai)."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Handwritten section titles set on one 32px ruled line."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Chance card names."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Running text; ledes 17px/1.6 capped at 64ch."
+      },
+      "card-text": {
+        "displayName": "Card Text",
+        "purpose": "Story and card body text."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Printed uppercase field names, column heads, table heads, kind tags."
+      },
+      "hand": {
+        "displayName": "Hand",
+        "purpose": "Anything a person writes: member and team names, turn order, pen notes."
+      },
+      "numeral": {
+        "displayName": "Numeral",
+        "purpose": "Hours, dice, counts, log cells; tabular figures."
+      }
+    },
+    "shadows": [
+      {
+        "name": "lift",
+        "value": "0 1px 0 rgb(27 37 89 / 0.05), 0 6px 14px -6px rgb(27 37 89 / 0.28)",
+        "purpose": "Resting index cards, buttons, Solution cards, plan pick cards."
+      },
+      {
+        "name": "lift-high",
+        "value": "0 2px 0 rgb(27 37 89 / 0.05), 0 16px 30px -12px rgb(27 37 89 / 0.38)",
+        "purpose": "Active story, sticky planning bar, confirm dialog, cover objects."
+      },
+      {
+        "name": "active-ring",
+        "value": "0 0 0 2.5px #1b2559, 0 2px 0 rgb(27 37 89 / 0.05), 0 16px 30px -12px rgb(27 37 89 / 0.38)",
+        "purpose": "The story being worked this turn."
+      },
+      {
+        "name": "button-pressed",
+        "value": "0 1px 0 rgb(27 37 89 / 0.08), 0 2px 5px -2px rgb(27 37 89 / 0.3)",
+        "purpose": "Button :active, pushed 2px into the page."
+      },
+      {
+        "name": "sheet",
+        "value": "0 1px 0 rgb(255 255 255 / 0.6) inset, 0 18px 40px -18px rgb(0 0 0 / 0.45)",
+        "purpose": "The paper sheet on the green cover board."
+      },
+      {
+        "name": "side-sheet",
+        "value": "-24px 0 48px -24px rgb(0 0 0 / 0.5)",
+        "purpose": "Cara Main rules panel."
+      },
+      {
+        "name": "focus-ring",
+        "value": "outline: 3px solid #1b2559; outline-offset: 2px",
+        "purpose": "Global :focus-visible treatment."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-out",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Default easing: button press 0.12s, card flip 0.74s, red-pen strike 0.32s, write-in 0.34s after 0.22s, rules sheet 0.38s."
+      },
+      {
+        "name": "ease-stamp",
+        "value": "cubic-bezier(0.22, 1, 0.36, 1)",
+        "purpose": "SELESAI stamp landing from 1.6x scale over 0.5s."
+      },
+      {
+        "name": "die-tumble",
+        "value": "1100ms cubic-bezier(0.18, 0.75, 0.22, 1)",
+        "purpose": "Dice cube rotation with bounce keyframes; second die 60ms behind."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "1ms",
+        "purpose": "prefers-reduced-motion collapses animations and transitions; confetti is disabled."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "header-tight",
+        "value": "1400px"
+      },
+      {
+        "name": "play-stack",
+        "value": "1180px"
+      },
+      {
+        "name": "cover-stack",
+        "value": "900px"
+      },
+      {
+        "name": "board-2col",
+        "value": "860px"
+      },
+      {
+        "name": "phone-frame",
+        "value": "720px"
+      },
+      {
+        "name": "board-1col",
+        "value": "540px"
+      },
+      {
+        "name": "cover-compact",
+        "value": "520px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Button",
+      "kind": "button",
+      "refersTo": "button",
+      "description": "Pen-outlined paper button that presses into the page.",
+      "html": "<button class=\"ds-btn\"><svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 7v14\"/><path d=\"M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z\"/></svg>Cara main</button>",
+      "css": ".ds-btn{display:inline-flex;align-items:center;gap:8px;border-radius:12px;border:2px solid var(--ink,#1b2559);font-family:'Atkinson Hyperlegible Next Variable','Segoe UI',system-ui,sans-serif;font-weight:700;line-height:1.2;box-shadow:0 1px 0 rgb(27 37 89 / .05),0 6px 14px -6px rgb(27 37 89 / .28);cursor:pointer;transition:transform .12s cubic-bezier(.16,1,.3,1),box-shadow .12s cubic-bezier(.16,1,.3,1),background-color .15s;min-height:44px;padding:10px 18px;font-size:16px;background:var(--paper,#fff);color:var(--ink,#1b2559)}.ds-btn:hover{background:var(--paper-shade,#f3f7fc)}.ds-btn:active{transform:translateY(2px);box-shadow:0 1px 0 rgb(27 37 89 / .08),0 2px 5px -2px rgb(27 37 89 / .3)}.ds-btn:focus-visible{outline:3px solid var(--ink,#1b2559);outline-offset:2px}"
+    },
+    {
+      "name": "Go Button",
+      "kind": "button",
+      "refersTo": "button-go",
+      "description": "The single do-this-now action per view, filled with stabilo.",
+      "html": "<button class=\"ds-btn-go\">Selesai, giliran Dimas <svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M5 12h14\"/><path d=\"m12 5 7 7-7 7\"/></svg></button>",
+      "css": ".ds-btn-go{display:inline-flex;align-items:center;gap:8px;border-radius:12px;border:2px solid var(--ink,#1b2559);font-family:'Atkinson Hyperlegible Next Variable','Segoe UI',system-ui,sans-serif;font-weight:700;line-height:1.2;box-shadow:0 1px 0 rgb(27 37 89 / .05),0 6px 14px -6px rgb(27 37 89 / .28);cursor:pointer;transition:transform .12s cubic-bezier(.16,1,.3,1),box-shadow .12s cubic-bezier(.16,1,.3,1),background-color .15s;min-height:52px;padding:12px 22px;font-size:18px;background:var(--stabilo,#ffe53d);color:var(--ink,#1b2559)}.ds-btn-go:hover{background:#ffdc0a}.ds-btn-go:active{transform:translateY(2px);box-shadow:0 1px 0 rgb(27 37 89 / .08),0 2px 5px -2px rgb(27 37 89 / .3)}.ds-btn-go:focus-visible{outline:3px solid var(--ink,#1b2559);outline-offset:2px}"
+    },
+    {
+      "name": "Ink Button",
+      "kind": "button",
+      "refersTo": "button-ink",
+      "description": "Navy-filled button for secondary commitments such as export.",
+      "html": "<button class=\"ds-btn-ink\">Unduh Excel (.xlsx)</button>",
+      "css": ".ds-btn-ink{display:inline-flex;align-items:center;gap:8px;border-radius:12px;border:2px solid var(--ink,#1b2559);font-family:'Atkinson Hyperlegible Next Variable','Segoe UI',system-ui,sans-serif;font-weight:700;line-height:1.2;box-shadow:0 1px 0 rgb(27 37 89 / .05),0 6px 14px -6px rgb(27 37 89 / .28);cursor:pointer;transition:transform .12s cubic-bezier(.16,1,.3,1),box-shadow .12s cubic-bezier(.16,1,.3,1),background-color .15s;min-height:44px;padding:10px 18px;font-size:16px;background:var(--ink,#1b2559);color:#fff}.ds-btn-ink:hover{background:#253275}.ds-btn-ink:active{transform:translateY(2px);box-shadow:0 1px 0 rgb(27 37 89 / .08),0 2px 5px -2px rgb(27 37 89 / .3)}.ds-btn-ink:focus-visible{outline:3px solid var(--ink,#1b2559);outline-offset:2px}"
+    },
+    {
+      "name": "Quiet Button",
+      "kind": "button",
+      "refersTo": "button-quiet",
+      "description": "Borderless header tool or back link.",
+      "html": "<button class=\"ds-btn-quiet\">Game baru</button>",
+      "css": ".ds-btn-quiet{display:inline-flex;align-items:center;gap:8px;border-radius:12px;border:2px solid var(--ink,#1b2559);font-family:'Atkinson Hyperlegible Next Variable','Segoe UI',system-ui,sans-serif;font-weight:700;line-height:1.2;box-shadow:0 1px 0 rgb(27 37 89 / .05),0 6px 14px -6px rgb(27 37 89 / .28);cursor:pointer;transition:transform .12s cubic-bezier(.16,1,.3,1),box-shadow .12s cubic-bezier(.16,1,.3,1),background-color .15s;min-height:44px;padding:10px;font-size:16px;border-color:transparent;box-shadow:none;background:transparent;color:var(--ink,#1b2559)}.ds-btn-quiet:hover{background:rgb(27 37 89 / .06)}.ds-btn-quiet:focus-visible{outline:3px solid var(--ink,#1b2559);outline-offset:2px}"
+    },
+    {
+      "name": "Line Input",
+      "kind": "input",
+      "refersTo": "line-input",
+      "description": "Notebook fill-in line; a soft stabilo swipe on focus.",
+      "html": "<input class=\"ds-line-input\" placeholder=\"Nama anggota\" />",
+      "css": ".ds-line-input{width:100%;height:52px;padding:0 4px;border:0;border-bottom:2px solid var(--ink-2,#414b78);border-radius:0;background:transparent;color:var(--ink,#1b2559);font:600 23px 'Shantell Sans Variable','Segoe Print',cursive;transition:background-color .15s}.ds-line-input::placeholder{color:var(--ink-3,#5d668c);font-weight:400;opacity:.8}.ds-line-input:focus{outline:none;border-bottom-color:var(--ink,#1b2559);background:linear-gradient(to top,var(--stabilo-soft,#fff3a1) 0 60%,transparent 60%)}"
+    },
+    {
+      "name": "Story Card",
+      "kind": "card",
+      "refersTo": "story-card",
+      "description": "Paper index card with a margin-red header rule and hours in ink; hover previews the active state.",
+      "html": "<article class=\"ds-story\"><div class=\"ds-story__head\"><b class=\"ds-story__no\">#5</b><span class=\"ds-hours\"><span class=\"ds-label\">sisa</span> <s class=\"ds-hours__old\">16</s> &rarr; <b class=\"ds-hours__now\">11</b> <small>/16</small></span></div><p>Administrators of organizations can monitor emails.</p></article>",
+      "css": ".ds-story{max-width:240px;padding:8px 12px 12px;border-radius:10px;border:1px solid rgb(27 37 89 / .14);background:var(--paper,#fff);color:var(--ink,#1b2559);box-shadow:0 1px 0 rgb(27 37 89 / .05),0 6px 14px -6px rgb(27 37 89 / .28);font:400 14.5px/1.4 'Atkinson Hyperlegible Next Variable','Segoe UI',system-ui,sans-serif;transition:box-shadow .2s cubic-bezier(.16,1,.3,1),transform .2s cubic-bezier(.16,1,.3,1)}.ds-story:hover{box-shadow:0 0 0 2.5px #1b2559,0 2px 0 rgb(27 37 89 / .05),0 16px 30px -12px rgb(27 37 89 / .38);transform:translateY(-2px)}.ds-story:hover .ds-story__no{background:#ffe53d}.ds-story p{margin:0}.ds-story__head{display:flex;justify-content:space-between;align-items:baseline;gap:8px;padding-bottom:5px;margin-bottom:7px;border-bottom:1.5px solid var(--margin-line,#f2a0a0)}.ds-story__no{font-size:15px;font-weight:800;padding:0 3px;border-radius:3px}.ds-label{font-family:'Atkinson Hyperlegible Next Variable','Segoe UI',system-ui,sans-serif;font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#5d668c}.ds-hours{font-family:'Atkinson Hyperlegible Mono Variable',ui-monospace,monospace;font-variant-numeric:tabular-nums;color:#5d668c;white-space:nowrap}.ds-hours__old{position:relative;margin:0 1px;text-decoration:none;font-weight:700}.ds-hours__old::after{content:'';position:absolute;left:-4px;right:-4px;top:50%;height:2px;margin-top:-1px;border-radius:2px;background:var(--red-pen,#d63b2f);transform:rotate(-14deg)}.ds-hours__now{font-size:20px;font-weight:800;line-height:1;color:#1b2559}"
+    },
+    {
+      "name": "Problem Chance Card",
+      "kind": "card",
+      "refersTo": "chance-card-problem",
+      "description": "Index card with a coloured kind band; Event and Solution swap in their own band, tint and ink.",
+      "html": "<article class=\"ds-chance\"><div class=\"ds-chance__band\"></div><div class=\"ds-chance__head\"><b class=\"ds-chance__name\">Bad Quality</b><span class=\"ds-chance__kind\">Problem</span></div><p>You cannot finish the story because the quality is inadequate.</p></article>",
+      "css": ".ds-chance{max-width:260px;padding:0 14px 14px;border-radius:12px;border:1px solid rgb(27 37 89 / .14);background:var(--problem-tint,#ffe9e1);color:var(--ink,#1b2559);box-shadow:0 1px 0 rgb(27 37 89 / .05),0 6px 14px -6px rgb(27 37 89 / .28);overflow:hidden;font:400 15px/1.45 'Atkinson Hyperlegible Next Variable','Segoe UI',system-ui,sans-serif}.ds-chance p{margin:6px 0 0}.ds-chance__band{height:10px;margin:0 -14px 10px;background:var(--problem,#e4532a)}.ds-chance__head{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}.ds-chance__name{font-size:22px;font-weight:800;line-height:1.15;letter-spacing:-.01em}.ds-chance__kind{margin-top:3px;padding:1px 7px;border:1.5px solid currentColor;border-radius:6px;background:#fff;color:var(--problem-ink,#b0360f);font-size:11px;font-weight:800;letter-spacing:.1em;line-height:16px;text-transform:uppercase}"
+    },
+    {
+      "name": "Problem Flag",
+      "kind": "chip",
+      "refersTo": "problem-flag",
+      "description": "Pennant pinned under a blocked story.",
+      "html": "<span class=\"ds-flag\"><svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\"><circle cx=\"12\" cy=\"12\" r=\"10\"/><path d=\"M12 8v4\"/><path d=\"M12 16h.01\"/></svg>Bad Quality</span>",
+      "css": ".ds-flag{display:inline-flex;align-items:center;gap:5px;padding:3px 12px 3px 7px;border-radius:3px 12px 12px 3px;background:var(--problem-ink,#b0360f);color:#fff;font:700 12.5px/1.2 'Atkinson Hyperlegible Next Variable','Segoe UI',system-ui,sans-serif}"
+    },
+    {
+      "name": "SELESAI Stamp",
+      "kind": "custom",
+      "refersTo": "stamp",
+      "description": "Rubber DONE stamp in cover-green ink, tilted -9deg, landing from 1.6x.",
+      "html": "<span class=\"ds-stamp\">Selesai</span>",
+      "css": ".ds-stamp{display:inline-block;padding:5px 10px 4px;border:3px solid currentColor;border-radius:7px;color:var(--stamp,#0b7a4e);font:800 19px/1 'Atkinson Hyperlegible Next Variable','Segoe UI',system-ui,sans-serif;letter-spacing:.16em;text-transform:uppercase;box-shadow:inset 0 0 0 2px #fff,inset 0 0 0 3.5px currentColor;transform:rotate(-9deg);mix-blend-mode:multiply;animation:ds-stamp-in .5s cubic-bezier(.22,1,.36,1) both}@keyframes ds-stamp-in{from{opacity:0;transform:rotate(-9deg) scale(1.6)}}"
+    },
+    {
+      "name": "Step Rail",
+      "kind": "nav",
+      "refersTo": "step-now",
+      "description": "Turn steps; the current step is highlighted in stabilo.",
+      "html": "<ol class=\"ds-steps\"><li class=\"is-done\"><span>1</span>Pilih cerita</li><li class=\"is-now\"><span>2</span>Lempar dadu</li><li><span>3</span>Ambil kartu</li></ol>",
+      "css": ".ds-steps{display:flex;flex-wrap:wrap;gap:4px;margin:0;padding:0;list-style:none;font:700 14px 'Atkinson Hyperlegible Next Variable','Segoe UI',system-ui,sans-serif;color:#5d668c}.ds-steps li{display:inline-flex;align-items:center;gap:7px;padding:4px 12px 4px 4px;border-radius:999px}.ds-steps span{display:grid;place-items:center;width:24px;height:24px;border-radius:50%;border:1.5px solid currentColor;font-size:12.5px}.ds-steps .is-now{background:var(--stabilo,#ffe53d);color:#1b2559}.ds-steps .is-now span{background:#1b2559;border-color:#1b2559;color:#fff}.ds-steps .is-done{color:#414b78}.ds-steps .is-done span{background:#d3e3f4;border-color:#d3e3f4}"
+    }
+  ],
+  "narrative": {
+    "northStar": "Buku Tulis Sprint",
+    "overview": "The whole app is one Indonesian school notebook that a team of students fills in together around one laptop. A green cloth-bound cover frames every screen; inside sits a single sheet of cool white ruled paper with pale blue rules every 32px and a red margin line. Everything the game does is written onto that page in navy ballpoint: story cards are index cards, Chance cards are index cards with a coloured top band, a finished story gets a rubber SELESAI stamp, and the one thing that is live right now is swiped with a yellow stabilo.\n\nDensity is working-notebook density, not dashboard density: the play screen fits the turn desk, the Kantong Solusi strip, the four-column board and the start of the log into a 1366x768 laptop, read by several people from 50 to 100 cm away. Legibility carries the system. Atkinson Hyperlegible does the printed work, Shantell Sans does the handwriting, and every number sits in tabular figures so hours can be compared at a glance.\n\nThe system's central behaviour is visible arithmetic: a number is never silently replaced. The old value stays on the page, struck through in red pen, followed by an arrow and the new value. Depth is paper lying on paper, soft and ink-tinted; nothing glows and nothing floats.",
+    "keyCharacteristics": [
+      "Green cover board (with faint grain) framing one ruled paper sheet with a red margin line.",
+      "Navy ink, never black; stabilo yellow is the only emphasis colour.",
+      "Index-card components with coloured kind bands (Event graphite, Problem red-orange, Solution light blue).",
+      "Handwritten Shantell Sans for titles and people; printed Atkinson for rules, cards and labels; Atkinson Mono for numerals.",
+      "Struck-through red-pen corrections, rubber stamps and hole-punch confetti as the event vocabulary."
+    ],
+    "rules": [
+      {
+        "name": "The Stabilo Means Now Rule",
+        "body": "Stabilo yellow marks only what is live on this turn (current player, today, current step, active story, the primary action). It is never decoration and never marks a past or future state.",
+        "section": "colors"
+      },
+      {
+        "name": "The Kind Colour Rule",
+        "body": "Event, Problem and Solution colours belong to their card kind. Problem red-orange doubles only as \"blocked or wrong\"; Event and Solution colours never carry any other meaning.",
+        "section": "colors"
+      },
+      {
+        "name": "The Ink Not Black Rule",
+        "body": "Text and strokes are Ballpoint Navy (#1b2559) and its faded steps. Pure black appears only inside shadows.",
+        "section": "colors"
+      },
+      {
+        "name": "The Hand Is for People Rule",
+        "body": "Shantell Sans writes titles and anything a player wrote (names, team, pen notes). Rules text, card text and field labels stay in printed Atkinson.",
+        "section": "typography"
+      },
+      {
+        "name": "The Printed Field Rule",
+        "body": "An uppercase label always names a field, a column, or the value next to it, like a pre-printed \"Nama/Kelas\" field. It never sits above a title as a kicker.",
+        "section": "typography"
+      },
+      {
+        "name": "The Paper Lift Rule",
+        "body": "Shadows are soft, ink-tinted and downward, only on things that are physically paper or plastic on the page (cards, dice, buttons, dialogs). Flat ruled areas (board columns, log, header) carry no shadow.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "**Do** keep every screen inside the notebook: green cover frame, one ruled paper sheet on a 32px line, red margin line 56px from the left.",
+      "**Do** strike through the old number in red pen and write the new one beside it; never swap a value silently.",
+      "**Do** reserve stabilo yellow (#ffe53d) for the current turn, today, the current step, the active story and the single Go button per view.",
+      "**Do** set every number in Atkinson Hyperlegible Mono with tabular figures, and give every number a printed label (\"SISA\", \"/24\", \"jam\").",
+      "**Do** use Shantell Sans for titles and people's names, and Atkinson Hyperlegible Next for rules, card text and labels.",
+      "**Do** use the soft Lift and High Lift shadows for cards, buttons and dialogs, and a 3px navy focus outline everywhere.",
+      "**Do** use Lucide line icons at 16 to 22px next to text labels."
+    ],
+    "donts": [
+      "**Don't** use stabilo yellow as decoration, a brand fill, or for past or upcoming states.",
+      "**Don't** reuse Event graphite or Solution sky for anything but their card kind; Problem red-orange means only a Problem, a block, or an error.",
+      "**Don't** use pure black text or hard offset shadows; ink is navy and shadows are soft paper lift.",
+      "**Don't** tilt cards that are in play; rotation belongs to stamps, pen notes and the cover's scattered objects.",
+      "**Don't** put an uppercase label above a title as a kicker; labels name a field, a column, or the value beside them.",
+      "**Don't** use emoji or Unicode symbols as icons."
+    ]
+  }
+}
