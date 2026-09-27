@@ -66,7 +66,7 @@ export default function App() {
   const footer = (
     <footer className="frame__foot">
       <span>
-        Dibuat oleh <strong>Nugraha</strong> untuk teman-teman PPL
+        Dibuat oleh <strong>Nugraha</strong>
       </span>
       <span>
         SCRUM CARD GAME © Timofey Yevgrashyn ·{' '}
