@@ -1,5 +1,6 @@
 import { KIND_LABEL, getCard, getStoryCard } from './data'
 import { memberName, statusLabel, sumEstimates } from './engine'
+import { identitySheet, reviewRetroSheet } from './reportSheets'
 import type { GameState, LogEntry } from './types'
 
 type Cell = string | number | null
@@ -219,6 +220,16 @@ export function workbookSheets(state: GameState) {
         { width: 30 }, { width: 11 }, { width: 18 }, { width: 26 }, { width: 11 }, { width: 13 },
       ],
       stickyRowsCount: 1,
+    },
+    {
+      sheet: 'Sprint Review & Retro',
+      data: reviewRetroSheet(state),
+      columns: [{ width: 40 }, { width: 110 }],
+    },
+    {
+      sheet: 'Identitas Kelompok',
+      data: identitySheet(state),
+      columns: [{ width: 18 }, { width: 22 }, { width: 36 }, { width: 18 }],
     },
     {
       sheet: 'Keterangan Kolom',
