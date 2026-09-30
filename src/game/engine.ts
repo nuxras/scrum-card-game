@@ -1,5 +1,6 @@
 import {
   DAYS_PER_SPRINT,
+  EVENT_PROBLEM_IDS,
   KIND_LABEL,
   MAX_MEMBERS,
   MAX_SPRINTS,
@@ -56,7 +57,15 @@ export function createInitialState(): GameState {
     dayNote: null,
     skipNotices: [],
     uid: 0,
+    deck: [...EVENT_PROBLEM_IDS],
+    discard: [],
+    reshuffles: 0,
   }
+}
+
+/** Event/Problem cards still drawable (older saves without a deck count as a full deck). */
+export function deckOf(state: GameState): readonly string[] {
+  return state.deck ?? EVENT_PROBLEM_IDS
 }
 
 export interface TeamValidation {
@@ -298,11 +307,15 @@ function drawCard(state: GameState, cardId: string): GameState {
   } catch {
     return state
   }
+  // Event and Problem cards come out of the shared deck; Solutions never run out.
+  if (card.kind !== 'solution' && !deckOf(state).includes(card.id)) return state
+
   const s = clone(state)
   const t = s.turn!
   const story = findStory(s, t.storyId!)
   t.cards.push(card.id)
   t.stage = 'done'
+  if (card.kind !== 'solution') takeFromDeck(s, t, card.id)
 
   if (card.kind === 'problem') {
     story.problems.push({ uid: nextUid(s, 'p'), cardId: card.id, sprint: s.sprint, day: s.day })
@@ -473,6 +486,7 @@ function applySolution(state: GameState, solutionUid: string, problemUid: string
     before: story.remaining,
     problemsAfter: problemNames(story),
     pocketAfter: s.solutions.length,
+    deckAfter: deckOf(s).length,
   }
   if (afterCard) t.afterLog = [...(t.afterLog ?? []), entry]
   else pushLog(s, entry)
@@ -541,6 +555,7 @@ function buildTurnEntry(s: GameState, t: TurnDraft): PendingLog {
     trail: story.trailTurn === t.seq ? [...story.trail] : [before, story.remaining],
     problemsAfter: problemNames(story),
     pocketAfter: s.solutions.length,
+    deckAfter: deckOf(s).length,
   }
 }
 
@@ -569,6 +584,21 @@ function changeRemaining(s: GameState, story: StoryState, value: number) {
   }
   story.remaining = next
   story.trail.push(next)
+}
+
+/** Moves a drawn Event/Problem to the discard pile; an empty deck is reshuffled right away. */
+function takeFromDeck(s: GameState, t: TurnDraft, cardId: string) {
+  const deck = [...deckOf(s)].filter((id) => id !== cardId)
+  const discard = [...(s.discard ?? EVENT_PROBLEM_IDS.filter((id) => !deckOf(s).includes(id))), cardId]
+  if (deck.length === 0) {
+    s.deck = [...discard]
+    s.discard = []
+    s.reshuffles = (s.reshuffles ?? 0) + 1
+    t.notes.push(`Deck Event/Problem habis: ${discard.length} kartu dikocok ulang`)
+  } else {
+    s.deck = deck
+    s.discard = discard
+  }
 }
 
 function addAdjust(t: TurnDraft, text: string) {
@@ -642,6 +672,7 @@ function beginTurn(s: GameState) {
         diceTotal: 0,
         effective: 0,
         pocketAfter: s.solutions.length,
+        deckAfter: deckOf(s).length,
         skipReason: reason,
       })
       s.turnIndex += 1

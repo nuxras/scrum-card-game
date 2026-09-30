@@ -49,16 +49,19 @@ export function FlipCard({ cardId, instant = false }: { cardId: string; instant?
   )
 }
 
-/** The face-down deck on the desk. */
-export function CardBox({ count = 36 }: { count?: number }) {
+/** The face-down pile on the desk: the rest of the Event/Problem deck plus the 12 Solutions. */
+export function CardBox({ deckLeft }: { deckLeft: number }) {
   return (
-    <div className="deck" aria-hidden="true">
-      <div className="deck__card" />
-      <div className="deck__card" />
-      <div className="deck__card deck__card--top">
+    <div className="deck">
+      <div className="deck__card" aria-hidden="true" />
+      <div className="deck__card" aria-hidden="true" />
+      <div className="deck__card deck__card--top" aria-hidden="true">
         <ChanceBack />
       </div>
-      <span className="deck__count num">{count} kartu</span>
+      <span className="deck__count">
+        <span className="num">{deckLeft}</span>/24 Event·Problem
+        <br />+ 12 Solution
+      </span>
     </div>
   )
 }

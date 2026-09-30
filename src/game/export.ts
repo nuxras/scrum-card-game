@@ -30,6 +30,7 @@ export const EXTRA_COLUMNS = [
   'Jejak Jam',
   'Problem Aktif di Story',
   'Solution di Kantong',
+  'Sisa Deck Event/Problem',
 ] as const
 
 export const LOG_HEADERS = [...LECTURER_COLUMNS, ...EXTRA_COLUMNS]
@@ -52,6 +53,7 @@ export const COLUMN_NOTES: [string, string][] = [
   ['Jejak Jam (tambahan)', 'Semua nilai yang dilewati jam cerita selama giliran ini, berurutan.'],
   ['Problem Aktif di Story (tambahan)', 'Problem yang masih memblokir cerita setelah giliran.'],
   ['Solution di Kantong (tambahan)', 'Jumlah kartu Solution yang disimpan tim setelah giliran.'],
+  ['Sisa Deck Event/Problem (tambahan)', 'Kartu Event/Problem yang masih bisa ditarik (dari 24). Kartu yang sudah ditarik dibuang sampai deck habis lalu dikocok ulang; 12 Solution tidak pernah habis.'],
 ]
 
 function chanceKinds(e: LogEntry): string {
@@ -66,7 +68,7 @@ export function logTable(state: GameState): Cell[][] {
   return state.log.map((e) => {
     if (e.kind === 'skip') {
       const reason = e.skipReason ?? e.effect.replace(/^Giliran dilewati \((.*)\)$/, '$1')
-      return [e.sprint, e.day, e.order, e.member, null, 0, 0, 0, null, `Dilewati (${reason})`, 0, null, null, 'DILEWATI', `Kena ${reason}, giliran dilewati`, null, null, null, null, e.pocketAfter ?? null]
+      return [e.sprint, e.day, e.order, e.member, null, 0, 0, 0, null, `Dilewati (${reason})`, 0, null, null, 'DILEWATI', `Kena ${reason}, giliran dilewati`, null, null, null, null, e.pocketAfter ?? null, e.deckAfter ?? null]
     }
     if (e.kind === 'solution') {
       const [solutionId, problemId] = e.cardIds
@@ -74,7 +76,7 @@ export function logTable(state: GameState): Cell[][] {
         e.sprint, e.day, null, 'Tim', e.storyId, null, null, null,
         'SOLUTION (dipakai)', `${getCard(solutionId).name} → menutup ${getCard(problemId).name}`,
         null, e.before ?? e.remaining, null, e.status, e.effect,
-        null, e.remaining, null, e.problemsAfter ?? null, e.pocketAfter ?? null,
+        null, e.remaining, null, e.problemsAfter ?? null, e.pocketAfter ?? null, e.deckAfter ?? null,
       ]
     }
     return [
@@ -84,6 +86,7 @@ export function logTable(state: GameState): Cell[][] {
       e.effective ?? null, e.before ?? null, e.afterWork ?? null,
       e.status, e.effect,
       e.adjust || null, e.remaining, e.trail ? e.trail.join(' → ') : null, e.problemsAfter || null, e.pocketAfter ?? null,
+      e.deckAfter ?? null,
     ]
   })
 }
@@ -213,7 +216,7 @@ export function workbookSheets(state: GameState) {
       columns: [
         { width: 7 }, { width: 6 }, { width: 8 }, { width: 14 }, { width: 8 }, { width: 10 }, { width: 10 }, { width: 11 },
         { width: 22 }, { width: 30 }, { width: 10 }, { width: 11 }, { width: 18 }, { width: 22 }, { width: 58 },
-        { width: 30 }, { width: 11 }, { width: 18 }, { width: 26 }, { width: 11 },
+        { width: 30 }, { width: 11 }, { width: 18 }, { width: 26 }, { width: 11 }, { width: 13 },
       ],
       stickyRowsCount: 1,
     },

@@ -111,6 +111,8 @@ export interface LogEntry {
   problemsAfter?: string
   pocketAfter?: number
   skipReason?: string
+  /** Event/Problem cards left in the deck after this row. */
+  deckAfter?: number
 }
 
 export interface SprintRecord {
@@ -159,6 +161,11 @@ export interface GameState {
   dayNote: DayNote | null
   skipNotices: SkipNotice[]
   uid: number
+  /** Event/Problem cards still in the deck (older saves lack it: treated as a full deck). */
+  deck?: string[]
+  /** Event/Problem cards drawn since the last reshuffle. */
+  discard?: string[]
+  reshuffles?: number
 }
 
 export type Action =

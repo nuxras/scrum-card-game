@@ -1,7 +1,7 @@
 import { ArrowRight, Dices, Hand, MessageCircleQuestion, X } from 'lucide-react'
 import { useEffect, useMemo, useRef, useState, type Dispatch } from 'react'
 import { KIND_LABEL, getCard, getStoryCard } from '../game/data'
-import { findStory, gameReducer, memberName, suggestStory } from '../game/engine'
+import { deckOf, findStory, gameReducer, memberName, suggestStory } from '../game/engine'
 import { drawChanceCardId, rollTwoDice } from '../game/random'
 import type { Action, Dice, GameState, StoryState } from '../game/types'
 import { CardBox, FlipCard } from './ChanceCard'
@@ -111,7 +111,7 @@ export function TurnDesk({
 
   function startDraw() {
     if (drawing) return
-    const id = drawChanceCardId()
+    const id = drawChanceCardId(deckOf(state))
     setPendingCard(id)
     window.setTimeout(
       () => {
@@ -294,7 +294,7 @@ export function TurnDesk({
                     </p>
                   )}
                   {turn.stage === 'draw' && !drawing ? (
-                    <CardBox />
+                    <CardBox deckLeft={deckOf(state).length} />
                   ) : (
                     current && (
                       <div className="desk__card" key={`${turn.seq}-${shownCards.length - 1}`}>

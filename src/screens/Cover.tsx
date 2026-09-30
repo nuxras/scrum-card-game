@@ -74,7 +74,7 @@ export function Cover({
               <BookOpen aria-hidden="true" /> Cara main
             </button>
           </div>
-          <p className="cover__facts">2–6 pemain · 12 cerita · 3 sprint × 3 hari · 36 kartu Peluang</p>
+          <p className="cover__facts">2–6 pemain · 12 cerita · 3 sprint × 3 hari · deck 24 Event/Problem + 12 Solution</p>
         </div>
       </main>
 

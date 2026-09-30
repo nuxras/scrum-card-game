@@ -93,8 +93,17 @@ const SOLUTIONS: ChanceCard[] = [
   { id: 's-enhance-skills', kind: 'solution', name: 'Enhance Skills', text: 'Training for raising the level of your skill.' },
 ]
 
-/** The Chance deck: every card once. Draws are with replacement (unlimited copies). */
+/** Every Chance card once (for reference lists). */
 export const CHANCE_DECK: readonly ChanceCard[] = [...EVENTS, ...PROBLEMS, ...SOLUTIONS]
+
+/**
+ * Deck rule (lecturer, 2026-09-30): the 24 Event + Problem cards form one deck for the whole
+ * game. A drawn card goes to the discard pile; when the deck runs out it is reshuffled from the
+ * discard pile, at any point in a sprint. The 12 Solutions never run out: they are always in the
+ * pile a card is drawn from, next to whatever is left of the Event/Problem deck.
+ */
+export const EVENT_PROBLEM_IDS: readonly string[] = [...EVENTS, ...PROBLEMS].map((c) => c.id)
+export const SOLUTION_IDS: readonly string[] = SOLUTIONS.map((c) => c.id)
 
 const CARD_INDEX = new Map(CHANCE_DECK.map((card) => [card.id, card]))
 

@@ -42,7 +42,7 @@ This is not a generic Scrum board or a game loosely "inspired by" Scrum. It runs
 - Team of 2–6 members (the manual recommends 4–6, maximum 6). Team and member names are free text.
 - 12 stories with fixed estimates. 1 sprint = 3 days, maximum 3 sprints. Each member gets one turn per day, so turns per day = team size.
 - The dice total is subtracted from the chosen story's remaining hours, floored at 0.
-- The Chance deck combines Events, Problems and Solutions and is drawn with replacement: any card can come up again at any time.
+- **Chance deck (lecturer's rule, confirmed 2026-09-30; replaces the earlier draw-with-replacement rule):** the 14 Events and 10 Problems form one 24-card deck for the whole game. A drawn Event/Problem goes to the discard pile and cannot come up again until the deck is reshuffled. When the deck runs out, the discard pile is reshuffled into it automatically, at any point in a sprint. The 12 Solutions never run out and are always in the pile a card is drawn from, next to the rest of the deck (user's choice, 2026-09-30): each draw is uniform over remaining Event/Problem cards + 12 Solutions, so Solutions get likelier as the deck thins.
 - **Event:** one-time effect, applied immediately, then discarded.
 - **Problem:** attaches to the story being worked on and blocks it from DONE until a Solution closes it. Work and hour deduction on that story continue while it is blocked.
 - **Solution:** belongs to the whole team. If unused, it is kept in the team's collection, with no limit and across sprints. It can close any active Problem on any story at any time, with no theme match needed. Both cards are then discarded.

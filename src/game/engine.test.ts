@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
-import { CHANCE_DECK, STORIES } from './data'
-import { createInitialState, findStory, gameReducer, suggestStory, validateTeam } from './engine'
+import { CHANCE_DECK, EVENT_PROBLEM_IDS, SOLUTION_IDS, STORIES, getCard } from './data'
+import { createInitialState, deckOf, findStory, gameReducer, suggestStory, validateTeam } from './engine'
 import { drawChanceCardId, rollTwoDice } from './random'
 import type { Action, Dice, GameState } from './types'
 
@@ -17,14 +17,19 @@ function started(names = ['Ani', 'Budi'], committed = STORIES.map((s) => s.id)):
   )
 }
 
+/**
+ * Effect tests draw the card they need even if an earlier turn already drew it:
+ * the card is put back into the deck first. Deck rules are tested on their own below.
+ */
+function withCard(s: GameState, cardId: string): GameState {
+  if (getCard(cardId).kind === 'solution' || deckOf(s).includes(cardId)) return s
+  return { ...s, deck: [...deckOf(s), cardId], discard: (s.discard ?? []).filter((id) => id !== cardId) }
+}
+
 /** Plays one full turn: pick, roll, draw, then end the turn. */
 function turn(state: GameState, storyId: number, dice: Dice, cardId: string, end = true): GameState {
-  const s = run(
-    state,
-    { type: 'selectStory', storyId },
-    { type: 'rollDice', dice },
-    { type: 'drawCard', cardId },
-  )
+  let s = run(state, { type: 'selectStory', storyId }, { type: 'rollDice', dice })
+  s = gameReducer(withCard(s, cardId), { type: 'drawCard', cardId })
   return end ? gameReducer(s, { type: 'endTurn' }) : s
 }
 
@@ -40,14 +45,104 @@ describe('data', () => {
     expect(STORIES.reduce((sum, s) => sum + s.estimate, 0)).toBe(364)
   })
 
-  it('draws valid dice and cards', () => {
+  it('draws valid dice', () => {
     for (let i = 0; i < 500; i++) {
       const [a, b] = rollTwoDice()
       expect(a).toBeGreaterThanOrEqual(1)
       expect(b).toBeLessThanOrEqual(6)
-      const id = drawChanceCardId()
-      expect(CHANCE_DECK.some((c) => c.id === id)).toBe(true)
     }
+  })
+})
+
+describe('Chance deck (lecturer rule: 24 Event/Problem + never-ending Solutions)', () => {
+  it('starts with all 24 Event and Problem cards in one deck', () => {
+    const s = createInitialState()
+    expect(deckOf(s)).toHaveLength(24)
+    expect(new Set(deckOf(s))).toEqual(new Set(EVENT_PROBLEM_IDS))
+    expect(SOLUTION_IDS).toHaveLength(12)
+  })
+
+  it('only draws cards still in the deck, or Solutions', () => {
+    const deck = ['e-guru', 'p-bad-mood']
+    for (let i = 0; i < 2000; i++) {
+      const id = drawChanceCardId(deck)
+      expect(deck.includes(id) || SOLUTION_IDS.includes(id)).toBe(true)
+    }
+  })
+
+  it('makes Solutions likelier as the deck thins (12 of 12 + deck)', () => {
+    const count = (deck: string[]) => {
+      let sol = 0
+      for (let i = 0; i < 20000; i++) if (SOLUTION_IDS.includes(drawChanceCardId(deck))) sol++
+      return sol / 20000
+    }
+    expect(count([...EVENT_PROBLEM_IDS])).toBeCloseTo(12 / 36, 1)
+    expect(count(EVENT_PROBLEM_IDS.slice(0, 4))).toBeCloseTo(12 / 16, 1)
+  })
+
+  it('a drawn Event or Problem is discarded and cannot come up again', () => {
+    let s = turn(started(), 1, [1, 1], 'e-home-work')
+    expect(deckOf(s)).toHaveLength(23)
+    expect(deckOf(s)).not.toContain('e-home-work')
+    expect(s.discard).toEqual(['e-home-work'])
+    const again = run(s, { type: 'selectStory', storyId: 1 }, { type: 'rollDice', dice: [1, 1] })
+    expect(gameReducer(again, { type: 'drawCard', cardId: 'e-home-work' })).toBe(again)
+    expect(s.log.at(-1)?.deckAfter).toBe(23)
+  })
+
+  it('Solutions never leave the pile and can come up again and again', () => {
+    let s = turn(started(), 1, [1, 1], 's-insight')
+    s = turn(s, 1, [1, 1], 's-insight')
+    expect(deckOf(s)).toHaveLength(24)
+    expect(s.solutions.map((x) => x.cardId)).toEqual(['s-insight', 's-insight'])
+  })
+
+  it('reshuffles the moment the deck runs out, mid-sprint, and notes it in the log', () => {
+    let s = started()
+    const last = 'e-doing-well'
+    s = { ...s, deck: [last], discard: EVENT_PROBLEM_IDS.filter((id) => id !== last) }
+    s = turn(s, 1, [1, 1], last)
+    expect(s).toMatchObject({ sprint: 1, day: 1 })
+    expect(deckOf(s)).toHaveLength(24)
+    expect(s.discard).toEqual([])
+    expect(s.reshuffles).toBe(1)
+    expect(s.log.at(-1)?.effect).toContain('dikocok ulang')
+    expect(s.log.at(-1)?.deckAfter).toBe(24)
+  })
+
+  it('Overtime chains draw from the same deck', () => {
+    let s = turn(started(), 1, [1, 1], 'e-overtime', false)
+    s = run(s, { type: 'drawCard', cardId: 'e-extra-cost' }, { type: 'endTurn' })
+    expect(deckOf(s)).toHaveLength(22)
+    const next = run(s, { type: 'selectStory', storyId: 1 }, { type: 'rollDice', dice: [1, 1] })
+    expect(gameReducer(next, { type: 'drawCard', cardId: 'e-overtime' })).toBe(next)
+    expect(gameReducer(next, { type: 'drawCard', cardId: 'e-extra-cost' })).toBe(next)
+  })
+
+  it('a whole game never draws the same Event/Problem twice between reshuffles', () => {
+    let s = started(['A', 'B', 'C', 'D', 'E', 'F'], [10])
+    const drawn: string[] = []
+    let reshufflesSeen = 0
+    for (let i = 0; i < 18; i++) {
+      s = run(s, { type: 'selectStory', storyId: 10 }, { type: 'rollDice', dice: [1, 1] })
+      while (s.turn?.stage === 'draw') {
+        const id = drawChanceCardId(deckOf(s))
+        s = gameReducer(s, { type: 'drawCard', cardId: id })
+        if (getCard(id).kind !== 'solution') {
+          if ((s.reshuffles ?? 0) > reshufflesSeen) {
+            reshufflesSeen = s.reshuffles ?? 0
+            drawn.length = 0
+          } else {
+            expect(drawn).not.toContain(id)
+            drawn.push(id)
+          }
+        }
+      }
+      if (s.turn?.stage === 'decide') s = gameReducer(s, { type: 'resolveDecision', accept: false })
+      s = gameReducer(s, { type: 'endTurn' })
+      if (s.phase !== 'playing') break
+    }
+    expect(deckOf(s).length + (s.discard?.length ?? 0)).toBe(24)
   })
 })
 
