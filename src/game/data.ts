@@ -99,8 +99,8 @@ export const CHANCE_DECK: readonly ChanceCard[] = [...EVENTS, ...PROBLEMS, ...SO
 /**
  * Deck rule (lecturer, 2026-09-30): the 24 Event + Problem cards form one deck for the whole
  * game. A drawn card goes to the discard pile; when the deck runs out it is reshuffled from the
- * discard pile, at any point in a sprint. The 12 Solutions never run out: they are always in the
- * pile a card is drawn from, next to whatever is left of the Event/Problem deck.
+ * discard pile, at any point in a sprint. The 12 Solutions never run out and keep a fixed
+ * 12-in-36 (1/3) chance on every draw, independent of the deck (user's choice, 2026-09-30).
  */
 export const EVENT_PROBLEM_IDS: readonly string[] = [...EVENTS, ...PROBLEMS].map((c) => c.id)
 export const SOLUTION_IDS: readonly string[] = SOLUTIONS.map((c) => c.id)

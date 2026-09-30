@@ -49,7 +49,7 @@ export function FlipCard({ cardId, instant = false }: { cardId: string; instant?
   )
 }
 
-/** The face-down pile on the desk: the rest of the Event/Problem deck plus the 12 Solutions. */
+/** The face-down pile on the desk: the rest of the Event/Problem deck, plus a fixed 1/3 Solution chance. */
 export function CardBox({ deckLeft }: { deckLeft: number }) {
   return (
     <div className="deck">
@@ -60,7 +60,7 @@ export function CardBox({ deckLeft }: { deckLeft: number }) {
       </div>
       <span className="deck__count">
         <span className="num">{deckLeft}</span>/24 Event·Problem
-        <br />+ 12 Solution
+        <br />Solution: peluang 1/3
       </span>
     </div>
   )

@@ -53,7 +53,7 @@ export const COLUMN_NOTES: [string, string][] = [
   ['Jejak Jam (tambahan)', 'Semua nilai yang dilewati jam cerita selama giliran ini, berurutan.'],
   ['Problem Aktif di Story (tambahan)', 'Problem yang masih memblokir cerita setelah giliran.'],
   ['Solution di Kantong (tambahan)', 'Jumlah kartu Solution yang disimpan tim setelah giliran.'],
-  ['Sisa Deck Event/Problem (tambahan)', 'Kartu Event/Problem yang masih bisa ditarik (dari 24). Kartu yang sudah ditarik dibuang sampai deck habis lalu dikocok ulang; 12 Solution tidak pernah habis.'],
+  ['Sisa Deck Event/Problem (tambahan)', 'Kartu Event/Problem yang masih bisa ditarik (dari 24). Kartu yang sudah ditarik dibuang sampai deck habis lalu dikocok ulang. Solution tidak pernah habis: tiap tarikan peluangnya tetap 1/3.'],
 ]
 
 function chanceKinds(e: LogEntry): string {

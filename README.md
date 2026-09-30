@@ -35,7 +35,7 @@ Hasil `npm run build` adalah situs statis biasa (folder `dist/`), tanpa backend.
 
 ## Struktur singkat
 
-- `src/game/data.ts`: data resmi 12 cerita dan 36 kartu Peluang (jangan diubah). Deck: 24 Event/Problem ditarik tanpa pengembalian lalu dikocok ulang saat habis; 12 Solution tidak pernah habis.
+- `src/game/data.ts`: data resmi 12 cerita dan 36 kartu Peluang (jangan diubah). Deck: 24 Event/Problem ditarik tanpa pengembalian lalu dikocok ulang saat habis; 12 Solution tidak pernah habis (peluang tetap 1/3 tiap tarikan).
 - `src/game/engine.ts`: mesin aturan (reducer murni); semua efek kartu, progres hari/sprint, dan cek DONE.
 - `src/game/engine.test.ts`: tes aturan. Jalankan `npm test` setelah mengubah mesin.
 - `src/game/export.ts`: ekspor log ke CSV dan XLSX.

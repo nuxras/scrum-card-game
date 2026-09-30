@@ -20,10 +20,10 @@ export function rollTwoDice(): Dice {
 }
 
 /**
- * One Chance card from the pile: what is left of the Event/Problem deck plus the 12 Solutions,
- * which never run out. The thinner the deck, the likelier a Solution.
+ * One Chance card. A Solution comes up 12 times in 36, whatever is left of the deck (Solutions
+ * never run out); otherwise the card comes from the remaining Event/Problem deck.
  */
 export function drawChanceCardId(deck: readonly string[]): string {
-  const pile = [...deck, ...SOLUTION_IDS]
-  return pile[randomIndex(pile.length)]
+  if (deck.length === 0 || randomIndex(36) < SOLUTION_IDS.length) return SOLUTION_IDS[randomIndex(SOLUTION_IDS.length)]
+  return deck[randomIndex(deck.length)]
 }

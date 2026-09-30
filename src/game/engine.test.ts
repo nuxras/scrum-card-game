@@ -70,14 +70,15 @@ describe('Chance deck (lecturer rule: 24 Event/Problem + never-ending Solutions)
     }
   })
 
-  it('makes Solutions likelier as the deck thins (12 of 12 + deck)', () => {
+  it('keeps the Solution chance at 1/3 whatever is left of the deck', () => {
     const count = (deck: string[]) => {
       let sol = 0
       for (let i = 0; i < 20000; i++) if (SOLUTION_IDS.includes(drawChanceCardId(deck))) sol++
       return sol / 20000
     }
-    expect(count([...EVENT_PROBLEM_IDS])).toBeCloseTo(12 / 36, 1)
-    expect(count(EVENT_PROBLEM_IDS.slice(0, 4))).toBeCloseTo(12 / 16, 1)
+    expect(count([...EVENT_PROBLEM_IDS])).toBeCloseTo(1 / 3, 1)
+    expect(count(EVENT_PROBLEM_IDS.slice(0, 4))).toBeCloseTo(1 / 3, 1)
+    expect(count(['e-guru'])).toBeCloseTo(1 / 3, 1)
   })
 
   it('a drawn Event or Problem is discarded and cannot come up again', () => {

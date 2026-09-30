@@ -63,7 +63,7 @@ export function RulesPanel({ open, onClose }: { open: boolean; onClose: () => vo
               minus).
             </li>
             <li>
-              <strong>Ambil 1 kartu Peluang</strong> dari tumpukan (sisa deck Event/Problem + 12 Solution), lalu
+              <strong>Ambil 1 kartu Peluang</strong>: peluang 1/3 Solution, sisanya dari deck Event/Problem. Lalu
               jalankan efeknya.
             </li>
           </ol>
@@ -75,7 +75,7 @@ export function RulesPanel({ open, onClose }: { open: boolean; onClose: () => vo
             <li>Event (14) dan Problem (10) jadi satu deck berisi 24 kartu, dipakai sepanjang game.</li>
             <li>Kartu Event/Problem yang sudah ditarik dibuang dan tidak bisa keluar lagi sampai deck dikocok ulang.</li>
             <li>Begitu ke-24 kartu habis, semua kartu buangan otomatis dikocok ulang ke deck, kapan pun itu terjadi (tidak menunggu sprint baru).</li>
-            <li>12 Solution tidak pernah habis dan selalu ikut di tumpukan. Makin tipis deck Event/Problem, makin sering Solution keluar.</li>
+            <li>12 Solution tidak pernah habis. Setiap tarikan peluang Solution tetap 1/3 (12 dari 36), tidak terpengaruh isi deck; selain itu kartu diambil dari sisa deck Event/Problem.</li>
           </ul>
         </section>
 
